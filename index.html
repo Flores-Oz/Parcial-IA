@@ -47,10 +47,40 @@
             </select>
           </div>
         </div>
+        <div class="topic-choice-block">
+          <div class="choice-heading">
+            <span class="field-label">Temas incluidos</span>
+            <button id="toggleTopics" type="button">Deseleccionar todos</button>
+          </div>
+          <div class="topic-selector" id="topicSelector"></div>
+        </div>
         <button class="primary-btn" id="startButton" type="button">Comenzar práctica <span>→</span></button>
       </div>
 
       <div class="topic-grid" id="topicGrid"></div>
+      <section class="study-preview">
+        <div>
+          <div class="eyebrow"><span></span> Antes del cuestionario</div>
+          <h2>Repasa los conceptos esenciales</h2>
+          <p>Definiciones breves, comparaciones y procesos extraídos de las presentaciones.</p>
+        </div>
+        <button class="ghost-btn" id="openGuide" type="button">Abrir guía de repaso →</button>
+      </section>
+    </section>
+
+    <section class="guide hidden" id="guideView">
+      <button class="guide-back" id="closeGuide" type="button">← Volver al inicio</button>
+      <div class="guide-hero">
+        <div class="eyebrow"><span></span> Guía de repaso</div>
+        <h1>Conceptos que debes <em>tener claros.</em></h1>
+        <p>Selecciona un tema. Las tarjetas sintetizan definiciones, relaciones y diferencias importantes para el examen.</p>
+      </div>
+      <nav class="guide-tabs" id="guideTabs"></nav>
+      <div class="guide-grid" id="guideContent"></div>
+      <div class="guide-cta">
+        <p>¿Listo para comprobar lo aprendido?</p>
+        <button class="primary-btn" id="quizFromGuide" type="button">Practicar este tema <span>→</span></button>
+      </div>
     </section>
 
     <section class="quiz hidden" id="quizView" aria-live="polite">

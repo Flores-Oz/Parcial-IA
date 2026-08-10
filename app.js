@@ -7,6 +7,60 @@ const topics = {
   dialogflow: { name: "Dialogflow", icon: "◌", source: "5.2 · Dialogflow" }
 };
 
+const studyGuide = {
+  history: [
+    ["Definición","Sistema experto","Programa que incorpora conocimiento de un dominio mediante reglas, normalmente IF–THEN, y utiliza un motor de inferencia."],
+    ["Comparación","DENDRAL · MYCIN · XCON","DENDRAL infería estructuras moleculares; MYCIN apoyaba diagnósticos de infecciones; XCON configuraba equipos VAX."],
+    ["Proceso histórico","Inviernos de la IA","Periodos de pérdida de financiación y expectativas. El primero siguió a límites computacionales y resultados deficientes; el segundo coincidió con problemas de sistemas expertos y máquinas LISP."],
+    ["Concepto clave","Retropropagación","Algoritmo popularizado en 1986 para ajustar los pesos de redes multicapa propagando el error desde la salida."],
+    ["Hito","Deep learning","AlexNet impulsó la visión en 2012; AlphaGo combinó redes profundas y aprendizaje por refuerzo para vencer a Lee Sedol en 2016."],
+    ["Riesgos","Impactos de la IA","Incluyen privacidad, contenido falso, sesgos, seguridad ante ejemplos adversariales y consumo energético."]
+  ],
+  human: [
+    ["Definición","Inteligencia artificial","Sistemas basados en algoritmos matemáticos, modelos estadísticos y datos que realizan tareas asociadas con inteligencia."],
+    ["Diferencia","IA frente a inteligencia humana","La inteligencia humana surge de procesos biológicos e incluye conciencia, emociones e intuición; la IA actual aprende patrones sin experiencia subjetiva genuina."],
+    ["Concepto clave","IA estrecha","Sistema especializado en una tarea concreta. No posee la capacidad general y polivalente de una persona."],
+    ["Biología","Neurona y sinapsis","La neurona recibe, procesa y transmite información. La sinapsis es el contacto funcional donde se transmite el impulso nervioso."],
+    ["Medición","FLOPS","Operaciones de punto flotante por segundo. El material aproxima 10¹⁵ FLOPS —un petaflop— si cada sinapsis equivale a una operación."],
+    ["Advertencia","Imitación no es equivalencia","Reproducir una función o conducta no demuestra que un sistema tenga conciencia, emociones o subjetividad."]
+  ],
+  rational: [
+    ["Enfoque","Pensar razonablemente","Busca que la máquina razone internamente de manera lógica y coherente mediante leyes formales del pensamiento."],
+    ["Enfoque","Actuar razonablemente","Busca acciones efectivas que alcancen objetivos, sin exigir que el proceso interno imite al humano o sea lógica formal pura."],
+    ["Definición","Agente racional","Selecciona la acción que maximiza su rendimiento o utilidad esperada según la información disponible."],
+    ["Limitación","Lógica formal","No todo conocimiento puede expresarse fácilmente con lógica y la inferencia puede consumir recursos excesivos."],
+    ["Proceso","Decisión racional","Definir objetivos, elaborar alternativas o planes, seleccionar la acción óptima y actuar; después adaptarse a cambios del entorno."],
+    ["Comparación","Pensar vs. actuar","Pensar evalúa el proceso interno; actuar evalúa el comportamiento y sus resultados."]
+  ],
+  agents: [
+    ["Definición","REAS","Rendimiento, Entorno, Actuadores y Sensores: marco para especificar la tarea de un agente inteligente."],
+    ["Definición","OEDR","Detección y respuesta ante objetos y eventos. Identifica elementos, procesa datos y decide cómo reaccionar."],
+    ["Definición","ODD","Condiciones específicas en las que la automatización puede operar: zona, clima, infraestructura, tráfico, velocidad y restricciones legales."],
+    ["Niveles","Automatización 0–5","De ninguna automatización a automatización total. En nivel 3 el humano debe estar disponible; nivel 4 opera solo dentro de su ODD; nivel 5 no tendría esa limitación."],
+    ["Proceso","Conducción autónoma","Percibir el entorno, planear una ruta o maniobra y controlar el vehículo."],
+    ["Sensores","Fusión sensorial","GPS, IMU, odometría, cámaras, radar y LIDAR se complementan para estimar posición y construir un modelo perceptual robusto."],
+    ["Mapas","Tres representaciones","Mapa de carreteras para planificar; mapa de localización para ubicarse; grilla de ocupación para distinguir espacio libre y obstáculos."],
+    ["Reto","Incertidumbre perceptual","GPS corrupto, ruido de LIDAR, reflejos, destellos, lluvia o niebla pueden degradar las mediciones."]
+  ],
+  api: [
+    ["Definición","Token","Unidad básica de texto procesada por el modelo. Puede ser una palabra, parte de ella o un signo."],
+    ["Definición","LLM","Algoritmo entrenado con grandes volúmenes de texto para generar contenido a partir de patrones aprendidos."],
+    ["Comparación","Modelo y asistente","El modelo genera texto; el asistente es una implementación orientada a mantener una interacción continua y contextual."],
+    ["Roles","system · user · assistant","system configura conducta; user contiene solicitudes; assistant representa respuestas anteriores o ejemplos deseados."],
+    ["Estructura","Objeto response","choices[0].message.content contiene el texto principal; usage informa tokens de entrada, salida y total."],
+    ["Parámetro","Temperature","Valores bajos reducen variación y favorecen precisión; valores altos generan respuestas más diversas y creativas."]
+  ],
+  dialogflow: [
+    ["Definición","Intent","Propósito que Dialogflow reconoce en el mensaje, por ejemplo abrir o consultar un ticket."],
+    ["Entrenamiento","Frases de entrenamiento","Ejemplos representativos de cómo distintas personas expresan una intención. No deben escribirse literalmente para activar el intent."],
+    ["Definición","Entidad","Dato específico extraído del mensaje: quién, qué, cuánto, cuándo o dónde."],
+    ["Acción","Fulfillment","Función o API que se ejecuta cuando un intent requiere una acción o respuesta dinámica."],
+    ["Integración","Canales","Dialogflow puede conectarse con sitios web, aplicaciones, plataformas de mensajería, asistentes y telefonía IP."],
+    ["Intents base","Welcome y Fallback","Welcome reconoce saludos; Fallback responde cuando el agente no entiende suficientemente la solicitud."],
+    ["Proceso","Ciclo conversacional","Entrada del usuario → reconocimiento de intención y entidades → fulfillment si se requiere → generación de respuesta."]
+  ]
+};
+
 const q = (topic, difficulty, text, options, answer, explanation, hint) => ({ topic, difficulty, text, options, answer, explanation, hint });
 const questions = [
   q("history",1,"¿Qué problema contribuyó al primer invierno de la IA?",["El exceso de datos de entrenamiento","El crecimiento exponencial del espacio de búsqueda frente al hardware limitado","La aparición de las GPU","La prohibición mundial de LISP"],1,"El poder computacional limitado no podía afrontar espacios de búsqueda que crecían exponencialmente; además, hubo problemas de información y recortes de fondos.","Piensa en la relación entre la complejidad del problema y el hardware de 1952–1960."),
@@ -72,8 +126,29 @@ const questions = [
   q("dialogflow",2,"¿Cuál secuencia resume mejor el procesamiento conversacional?",["El usuario habla → se reconoce intención y entidades → se ejecuta fulfillment si hace falta → se genera respuesta","Se genera respuesta → luego se descubre la intención","Se llama siempre a fallback → se borran entidades","Se calcula FLOPS → se crea un mapa"],0,"Dialogflow interpreta la entrada, identifica propósito y datos, ejecuta lógica dinámica cuando corresponde y responde.","Ordena comprensión, acción y respuesta.")
 ];
 
+questions.push(
+  q("history",2,"¿Qué relación histórica es correcta?",["1943: primera red neuronal conceptual de una neurona","1958: AlphaGo","1980: GPT-3","2006: creación de DENDRAL"],0,"En 1943 se planteó una primera neurona artificial capaz de relaciones simples como AND y OR.","Es el acontecimiento más antiguo de las opciones."),
+  q("history",2,"La regla «las células que se activan juntas se conectan» se relaciona con…",["el aprendizaje hebbiano de 1949","el algoritmo de Dijkstra","la lógica aristotélica","el sistema XCON"],0,"La regla de Hebb de 1949 propuso fortalecer conexiones entre células activadas conjuntamente.","Lleva el apellido de Donald Hebb."),
+  q("history",1,"¿Qué hacía XCON?",["Configuraba componentes compatibles de sistemas VAX","Diagnosticaba infecciones","Traducía idiomas","Reconocía peatones"],0,"XCON decidía qué placas, memorias, dispositivos y cables eran compatibles y cómo conectarlos.","Era una aplicación industrial de configuración."),
+  q("human",2,"¿Cuál capacidad se atribuye con mayor claridad a la inteligencia humana?",["Generalizar desde pocos ejemplos y razonar en contextos nuevos","Necesitar siempre millones de datos","Carecer de emociones genuinas","Limitarse a una tarea estrecha"],0,"El material destaca el aprendizaje con pocos ejemplos y la generalización flexible como fortalezas humanas.","Contrasta aprendizaje humano e IA estrecha."),
+  q("human",2,"¿Por qué comparar solo la cantidad de neuronas puede ser insuficiente?",["Porque también importan sinapsis, organización biológica y procesos que todavía no comprendemos","Porque las sinapsis no transmiten información","Porque todas las neuronas son idénticas a FLOPS","Porque el cerebro no consume energía"],0,"La inteligencia no depende únicamente del número de neuronas, sino de conexiones, organización y complejas dinámicas biológicas.","Cantidad no equivale por sí sola a funcionamiento."),
+  q("rational",2,"Un programa demuestra teoremas siguiendo reglas formales. ¿Qué enfoque ejemplifica principalmente?",["Pensar razonablemente","Actuar como humano","Pensar como humano","Actuar al azar"],0,"La inferencia en lenguajes formales corresponde al enfoque de leyes del pensamiento.","Se evalúa el razonamiento interno lógico."),
+  q("rational",2,"Un robot usa aprendizaje, no reglas lógicas explícitas, pero cumple eficazmente su meta. Esto puede considerarse racional porque…",["la racionalidad concierne a sus decisiones y resultados","imita necesariamente el cerebro","posee emociones","toda red neuronal es lógica proposicional"],0,"Actuar racionalmente no exige una estrategia interna específica, sino decisiones coherentes que maximicen resultados.","Evalúa lo que hace, no cómo se parece su pensamiento."),
+  q("agents",1,"¿Qué es ROS según el material?",["Un framework abierto con herramientas y bibliotecas para desarrollar software robótico","Un sensor ultrasónico","Un nivel de autonomía","Una API conversacional"],0,"Robot Operating System es un framework de software abierto usado también en vehículos autónomos.","No es un sistema operativo tradicional pese a su nombre."),
+  q("agents",2,"¿Qué elementos dinámicos debe identificar la percepción?",["Vehículos, ciclistas y peatones","Solo bordillos","Únicamente mapas HD","Reglas IF–THEN"],0,"Los objetivos dinámicos incluyen vehículos de dos y cuatro ruedas y peatones.","Son objetos que pueden cambiar de posición."),
+  q("agents",2,"¿Para qué sirve principalmente un mapa de localización?",["Para combinar puntos LIDAR o rasgos visuales con GPS, odometría e IMU y estimar dónde está el vehículo","Para registrar intenciones","Para calcular tokens","Para sustituir el control lateral"],0,"Este mapa aporta referencias con las que el vehículo estima su pose respecto del entorno.","Está ligado a la ego-localización."),
+  q("api",1,"En el ejemplo de respuesta JSON, finish_reason: «stop» indica que…",["la generación terminó normalmente","la API key fue borrada","no existe contenido","se activó Dialogflow"],0,"stop señala una finalización normal de la generación en el objeto choice.","Es una razón de terminación, no un error."),
+  q("api",2,"Si deseas limitar específicamente la extensión generada, el ejercicio propone usar…",["max_output_tokens","temperature exclusivamente","role system","prompt_tokens"],0,"max_output_tokens limita la cantidad de tokens de salida.","El nombre del parámetro menciona directamente la salida."),
+  q("api",2,"¿Por qué debe protegerse una API key?",["Porque autentica solicitudes que pueden consumir el saldo de la cuenta","Porque contiene las respuestas del modelo","Porque es una entidad de Dialogflow","Porque controla el GPS"],0,"Quien posea la clave podría hacer solicitudes asociadas a la cuenta y generar consumo.","Trátala como una credencial."),
+  q("dialogflow",2,"¿Cuál es una buena práctica al redactar frases de entrenamiento?",["Incluir formas variadas y representativas de expresar la misma intención","Copiar una sola frase muchas veces","Mezclar propósitos opuestos en el mismo intent","Exigir coincidencia literal"],0,"La variedad representativa mejora la precisión con que el agente reconoce expresiones reales.","Piensa en cómo distintas personas pedirían lo mismo."),
+  q("dialogflow",2,"En «La secretaria tiene problemas con dos impresoras hoy», ¿qué sería una entidad temporal?",["hoy","secretaria","dos","impresoras"],0,"«Hoy» especifica cuándo ocurre el evento y puede extraerse como entidad temporal.","Busca la expresión de tiempo."),
+  q("dialogflow",2,"¿Cuál respuesta necesita más claramente fulfillment?",["Consultar en un sistema real y devolver el estado actualizado del ticket","Responder «Hola» a un saludo","Mostrar un texto fijo de despedida","Reconocer la palabra pizza"],0,"Obtener estado actualizado exige consultar datos externos mediante una función o API.","La respuesta depende de información dinámica."),
+  q("agents",3,"Si una cámara falla por destellos pero el radar mantiene distancias confiables, ¿qué principio mejora la seguridad?",["Fusión y redundancia de sensores","Usar una única fuente","Eliminar OEDR","Aumentar la temperatura"],0,"Combinar sensores con fortalezas distintas permite sostener la percepción cuando uno se degrada.","La diversidad de sensores reduce puntos únicos de fallo."),
+  q("rational",3,"Con información incompleta, una acción racional es necesariamente la que produce el mejor resultado real?",["No; es la que maximiza la utilidad esperada con la información disponible","Sí, porque un agente racional predice el futuro perfectamente","Sí, si imita a una persona","No, porque racionalidad significa actuar al azar"],0,"La racionalidad se juzga según evidencia disponible y utilidad esperada; la incertidumbre puede llevar a un resultado desfavorable aun con una buena decisión.","Distingue calidad de decisión y resultado posterior.")
+);
+
 const $ = id => document.getElementById(id);
-const state = { mode: "all", session: [], index: 0, correct: 0, streak: 0, bestStreak: 0, answers: [] };
+const state = { mode: "all", selectedTopics: new Set(Object.keys(topics)), guideTopic: "history", session: [], index: 0, correct: 0, streak: 0, bestStreak: 0, answers: [] };
 const saved = JSON.parse(localStorage.getItem("iaQuizProgress") || '{"attempts":{},"sessions":0}');
 
 function shuffle(array) {
@@ -85,6 +160,15 @@ function shuffle(array) {
 function renderTopics() {
   const counts = questions.reduce((a,x) => ((a[x.topic] = (a[x.topic] || 0) + 1), a), {});
   $("topicGrid").innerHTML = Object.entries(topics).map(([key,t]) => `<div class="topic-card"><i>${t.icon}</i><strong>${t.name}</strong><span>${counts[key]} preguntas · ${t.source}</span></div>`).join("");
+  $("topicSelector").innerHTML = Object.entries(topics).map(([key,t]) => `<button class="topic-toggle selected" data-topic="${key}" type="button">${t.name}</button>`).join("");
+  document.querySelectorAll(".topic-toggle").forEach(b => b.addEventListener("click",() => toggleTopic(b)));
+}
+
+function toggleTopic(button) {
+  const key = button.dataset.topic;
+  state.selectedTopics.has(key) ? state.selectedTopics.delete(key) : state.selectedTopics.add(key);
+  button.classList.toggle("selected",state.selectedTopics.has(key));
+  $("toggleTopics").textContent = state.selectedTopics.size ? "Deseleccionar todos" : "Seleccionar todos";
 }
 
 function selectMode(mode) {
@@ -95,6 +179,8 @@ function selectMode(mode) {
 function startQuiz(forcedMode) {
   if (forcedMode) selectMode(forcedMode);
   let pool = questions.map((item,id) => ({...item,id}));
+  if (!state.selectedTopics.size) { alert("Selecciona al menos un tema para comenzar."); return; }
+  pool = pool.filter(item => state.selectedTopics.has(item.topic));
   if (state.mode === "review") {
     const missed = Object.entries(saved.attempts).filter(([,v]) => v.wrong > 0 && v.correct / (v.correct + v.wrong) < .8).map(([id]) => Number(id));
     if (missed.length) pool = pool.filter(x => missed.includes(x.id));
@@ -107,6 +193,16 @@ function startQuiz(forcedMode) {
   $("homeView").classList.add("hidden"); $("resultsView").classList.add("hidden"); $("quizView").classList.remove("hidden");
   renderQuestion();
 }
+
+function renderGuide(topic = state.guideTopic) {
+  state.guideTopic = topic;
+  $("guideTabs").innerHTML = Object.entries(topics).map(([key,t]) => `<button class="guide-tab ${key===topic?"active":""}" data-topic="${key}" type="button">${t.name}</button>`).join("");
+  $("guideContent").innerHTML = studyGuide[topic].map(([type,title,text]) => `<article class="definition-card"><span class="card-type">${type}</span><h3>${title}</h3><p>${text}</p></article>`).join("");
+  document.querySelectorAll(".guide-tab").forEach(b => b.addEventListener("click",() => renderGuide(b.dataset.topic)));
+}
+
+function openGuide() { $("homeView").classList.add("hidden"); $("guideView").classList.remove("hidden"); renderGuide(); window.scrollTo({top:0,behavior:"smooth"}); }
+function closeGuide() { $("guideView").classList.add("hidden"); $("homeView").classList.remove("hidden"); window.scrollTo({top:0,behavior:"smooth"}); }
 
 function renderQuestion() {
   const item = state.session[state.index];
@@ -171,6 +267,14 @@ function showStats() {
 
 document.querySelectorAll(".segment").forEach(b => b.addEventListener("click",() => selectMode(b.dataset.mode)));
 $("startButton").addEventListener("click",() => startQuiz());
+$("toggleTopics").addEventListener("click",() => {
+  const selectAll = state.selectedTopics.size === 0;
+  state.selectedTopics = new Set(selectAll ? Object.keys(topics) : []);
+  document.querySelectorAll(".topic-toggle").forEach(b => b.classList.toggle("selected",selectAll));
+  $("toggleTopics").textContent = selectAll ? "Deseleccionar todos" : "Seleccionar todos";
+});
+$("openGuide").addEventListener("click",openGuide); $("closeGuide").addEventListener("click",closeGuide);
+$("quizFromGuide").addEventListener("click",() => { state.selectedTopics = new Set([state.guideTopic]); document.querySelectorAll(".topic-toggle").forEach(b => b.classList.toggle("selected",b.dataset.topic===state.guideTopic)); closeGuide(); startQuiz(); });
 $("nextButton").addEventListener("click",nextQuestion);
 $("hintButton").addEventListener("click",() => { $("hintText").textContent = state.session[state.index].hint; $("hintText").classList.remove("hidden"); });
 $("quitButton").addEventListener("click",() => { if(confirm("¿Salir de esta práctica? El progreso de las preguntas respondidas quedará guardado.")) { $("quizView").classList.add("hidden"); $("homeView").classList.remove("hidden"); } });
