@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cuestionario interactivo para el primer parcial de Inteligencia Artificial.">
+  <title>IA · Preparación Primer Parcial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Inicio">
+      <span class="brand-mark">IA</span>
+      <span>Primer Parcial</span>
+    </a>
+    <button class="ghost-btn" id="statsButton" type="button">Ver estadísticas</button>
+  </header>
+
+  <main>
+    <section class="hero" id="homeView">
+      <div class="eyebrow"><span></span> Entrenamiento adaptativo</div>
+      <h1>Estudia IA.<br><em>Comprueba lo que sabes.</em></h1>
+      <p class="hero-copy">Un recorrido interactivo por los seis documentos del curso. Recibe explicaciones al instante y vuelve sobre lo que necesitas reforzar.</p>
+
+      <div class="setup-card">
+        <div class="setup-row">
+          <div>
+            <span class="field-label">Modo de estudio</span>
+            <div class="segmented" id="modeSelector">
+              <button class="segment active" data-mode="all" type="button">Todos los temas</button>
+              <button class="segment" data-mode="review" type="button">Repasar errores</button>
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="questionCount">Preguntas</label>
+            <select id="questionCount">
+              <option value="10">10 preguntas</option>
+              <option value="20" selected>20 preguntas</option>
+              <option value="40">40 preguntas</option>
+              <option value="all">Banco completo</option>
+            </select>
+          </div>
+        </div>
+        <button class="primary-btn" id="startButton" type="button">Comenzar práctica <span>→</span></button>
+      </div>
+
+      <div class="topic-grid" id="topicGrid"></div>
+    </section>
+
+    <section class="quiz hidden" id="quizView" aria-live="polite">
+      <div class="quiz-head">
+        <button class="back-btn" id="quitButton" type="button" aria-label="Salir del cuestionario">←</button>
+        <div class="progress-wrap">
+          <div class="progress-meta"><span id="progressLabel">Pregunta 1 de 20</span><span id="scoreLabel">0 correctas</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+      </div>
+
+      <article class="question-card">
+        <div class="question-meta">
+          <span class="topic-pill" id="topicPill"></span>
+          <span class="difficulty" id="difficultyLabel"></span>
+        </div>
+        <h2 id="questionText"></h2>
+        <div class="answers" id="answers"></div>
+        <div class="feedback hidden" id="feedback">
+          <div class="feedback-title" id="feedbackTitle"></div>
+          <p id="feedbackText"></p>
+          <div class="source-note" id="sourceNote"></div>
+        </div>
+        <div class="quiz-actions">
+          <button class="hint-btn" id="hintButton" type="button">Necesito una pista</button>
+          <button class="primary-btn next hidden" id="nextButton" type="button">Siguiente <span>→</span></button>
+        </div>
+        <p class="hint hidden" id="hintText"></p>
+      </article>
+    </section>
+
+    <section class="results hidden" id="resultsView">
+      <div class="result-ring" id="resultRing"><strong id="resultPercent">0%</strong><span>dominio</span></div>
+      <div class="eyebrow"><span></span> Sesión completada</div>
+      <h2 id="resultTitle">Buen comienzo</h2>
+      <p id="resultSummary"></p>
+      <div class="result-stats">
+        <div><strong id="correctResult">0</strong><span>Correctas</span></div>
+        <div><strong id="incorrectResult">0</strong><span>Por reforzar</span></div>
+        <div><strong id="streakResult">0</strong><span>Mejor racha</span></div>
+      </div>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="result-actions">
+        <button class="primary-btn" id="retryButton" type="button">Nueva práctica <span>↻</span></button>
+        <button class="ghost-btn" id="reviewButton" type="button">Repasar errores</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="statsDialog">
+    <button class="dialog-close" id="closeStats" type="button" aria-label="Cerrar">×</button>
+    <div class="eyebrow"><span></span> Progreso acumulado</div>
+    <h2>Tu rendimiento</h2>
+    <p id="statsIntro"></p>
+    <div id="statsContent"></div>
+    <button class="danger-link" id="resetStats" type="button">Reiniciar progreso guardado</button>
+  </dialog>
+
+  <footer>Basado en los 6 documentos del curso · Los resultados se guardan solo en este navegador.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
